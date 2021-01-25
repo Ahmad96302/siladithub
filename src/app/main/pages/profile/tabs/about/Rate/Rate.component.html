@@ -1,0 +1,9 @@
+<p>What is the Your Rate For User: <strong> {{FullName}} </strong> </p>
+
+<app-rateTes class="rate"  [rating]="rating"  [starCount]="starCount" [color]="starColor" (ratingUpdated)="onRatingChanged($event)"></app-rateTes>
+
+<br>
+<br>
+
+<button class="dialogButton" (click)='clicked()' mat-raised-button mat-dialog-close='yes'>yse</button>
+<button class="dialogButton" mat-raised-button mat-dialog-close='no'>No</button>

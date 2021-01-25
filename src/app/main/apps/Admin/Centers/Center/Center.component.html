@@ -1,0 +1,105 @@
+<div id="Centers" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/apps/Admin/Centers'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="Centers-image mr-8 mr-sm-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <img  [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                     [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{Center.name}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        {{'Admin.Centers.new' | translate}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{'Admin.Centers.Detail' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    class="save-Center-button"
+                    [disabled]="CenterForm.invalid"
+                    *ngIf="pageType ==='new'" (click)="addCenter()">
+                <span> {{'Admin.Centers.Add' | translate}}</span>
+            </button>
+
+            <button mat-raised-button
+                    class="save-Center-button"
+                    [disabled]="CenterForm.invalid || CenterForm.pristine"
+                    *ngIf="pageType ==='edit'" (click)="saveCenter()">
+                <span>{{'Admin.Centers.Save' | translate}}</span>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="CenterForm" [formGroup]="CenterForm" class="Center w-100-p" fxLayout="column" fxFlex>
+
+                    <mat-tab-group>
+
+                        <mat-tab label="Basic Info">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Admin.Centers.Fields.Name' | translate}}</mat-label>
+                                    <input matInput placeholder="Center Name"
+                                           name="name"
+                                           formControlName="name"
+                                           required>
+                                </mat-form-field>
+                            </div>
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <mat-form-field appearance="outline" class="mr-16" fxFlex>
+                                    <mat-label>{{'Admin.Centers.Fields.city' | translate}}</mat-label>
+                                    <mat-select formControlName="cityId"
+                                                required>
+                                        <mat-option *ngFor="let City of cities"
+                                                    [value]="City.id">
+                                            {{City.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </mat-tab>
+
+
+                    </mat-tab-group>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

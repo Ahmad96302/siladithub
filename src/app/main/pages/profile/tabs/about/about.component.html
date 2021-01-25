@@ -1,0 +1,159 @@
+<div id="about" class="p-24" fxLayout="row wrap">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+
+        <div class="profile-box info-box contact" fxLayout="column">
+
+            <header class="accent">
+                <div class="title">Offers</div>
+            </header>
+
+         
+            <mat-table class="Offers-table"
+            #table [dataSource]="dataSource"
+            matSort
+            
+            fusePerfectScrollbar>
+
+     <!-- ID Column -->
+     <ng-container matColumnDef="id">
+         <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+         <mat-cell *matCellDef="let Offer">
+             <p class="text-truncate">{{Offer.id}}</p>
+         </mat-cell>
+     </ng-container>
+
+ 
+
+
+     <!-- Amount Column -->
+     <ng-container matColumnDef="Amount">
+         <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
+         <mat-cell *matCellDef="let Offer">
+             <p class="text-truncate">{{Offer.amount}}</p>
+         </mat-cell>
+     </ng-container>
+
+  <!-- Country -->
+  <ng-container matColumnDef="Country">
+     <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+     <mat-cell 
+
+      *matCellDef="let Offer">
+       <p class="text-truncate">{{Offer.country}}</p>
+     </mat-cell>
+ </ng-container>
+
+  <!-- city -->
+  <ng-container matColumnDef="city">
+     <mat-header-cell *matHeaderCellDef mat-sort-header>city</mat-header-cell>
+     <mat-cell 
+
+      *matCellDef="let Offer">
+       <p class="text-truncate">{{Offer.city}}</p>
+     </mat-cell>
+ </ng-container>
+
+           <!-- Type Column -->
+           <ng-container matColumnDef="Type">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
+            <mat-cell *matCellDef="let Offer">
+              <p class="text-truncate">{{ Offer.offerType }}</p>
+            </mat-cell>
+          </ng-container>
+  <!-- center -->
+  <ng-container matColumnDef="center">
+     <mat-header-cell *matHeaderCellDef mat-sort-header>center</mat-header-cell>
+     <mat-cell 
+
+      *matCellDef="let Offer">
+       <p class="text-truncate">{{Offer.center}}</p>
+     </mat-cell>
+ </ng-container>
+
+ <!-- Location -->
+  <ng-container matColumnDef="location">
+     <mat-header-cell *matHeaderCellDef mat-sort-header>location</mat-header-cell>
+     <mat-cell 
+
+      *matCellDef="let Offer">
+       <p class="text-truncate">{{Offer.location}}</p>
+     </mat-cell>
+ </ng-container>
+<!-- Action -->
+ <ng-container matColumnDef="Success">
+     <mat-header-cell *matHeaderCellDef mat-sort-header>Success</mat-header-cell>
+     <mat-cell 
+     
+      *matCellDef="let Offer">
+      <a *ngIf="Offer.status =='prossing'"
+      (click)="SuccessOffer(Offer.id,Offer.acepterId)"
+      ><p class="text-truncate"><mat-icon>done</mat-icon></p></a>
+     </mat-cell>
+ </ng-container>
+ <ng-container matColumnDef="Close">
+     <mat-header-cell *matHeaderCellDef mat-sort-header>Close</mat-header-cell>
+     <mat-cell 
+      *matCellDef="let Offer">
+        <a *ngIf="Offer.status =='prossing'" class="delete" (click)="CloseOffer(Offer.id)"> <p class="text-truncate"><mat-icon>record_voice_over</mat-icon></p></a>
+     </mat-cell>
+ </ng-container>
+
+ <ng-container matColumnDef="State">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+    <mat-cell 
+     *matCellDef="let Offer">
+        <p class="text-truncate">{{Offer.status}}<mat-icon></mat-icon></p>
+    </mat-cell>
+</ng-container>
+
+     <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+     <mat-row *matRowDef="let Offer; columns: displayedColumns;"
+              class="Offer"
+              matRipple
+              >
+     </mat-row>
+
+ </mat-table>
+
+ <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+ </mat-paginator>
+
+        </div>
+    </div>
+
+    <div class="about-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="35">
+        <div class="profile-box info-box contact" fxLayout="column">
+
+            <header class="accent">
+                <div class="title">Contact</div>
+            </header>
+
+            <div class="content">
+                <div class="info-line">
+                    <div class="title">Address</div>
+                    <div class="info">{{userDetails.location}}</div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Tel.</div>
+                    <div class="info" *ngFor="let tel of about.contact.tel">
+                        <span>{{userDetails.phoneNumber}}</span>
+                    </div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Emails</div>
+                    <div class="info" *ngFor="let email of about.contact.emails">
+                        <span>{{userDetails.email}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

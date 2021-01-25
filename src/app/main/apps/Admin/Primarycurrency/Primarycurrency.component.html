@@ -1,0 +1,89 @@
+<div id="City" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+    <!-- HEADER -->
+    <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <!-- APP TITLE -->
+
+      <!-- / APP TITLE -->
+
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT CARD -->
+    <div class="content-card">
+
+      <!-- CONTENT -->
+      <div class="content">
+
+
+        <form class="form" [formGroup]="form" (ngSubmit)='result()'>
+          <mat-tab-group>
+            <mat-tab label="Basic Info">
+              <div fxLayout="row" class="mt-1" fxLayoutAlign="start center">
+                <mat-form-field appearance="outline" fxFlex="100">
+                  <mat-label>{{'Admin.PrimaryCurrency.stock' | translate}}</mat-label>
+                  <mat-select formControlName="inGlobalStocks">
+                    <mat-option *ngFor="let item of items" [value]="item.value" (click)='select()'>
+                      {{item.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" class="mb-1" *ngIf="hide" fxLayoutAlign="start center">
+                <div appearance="outline" fxFlex="100">
+                  <label for="Symbol">{{'Admin.PrimaryCurrency.Code' | translate}}</label>
+                  <ng-select2 formControlName="Symbol" [data]="exampleData" class="col-md-12"></ng-select2>
+                </div>
+
+              </div>
+              <div fxLayout="row" *ngIf="!hide" fxLayoutAlign="start center">
+                <mat-form-field appearance="outline" fxFlex="100">
+                  <mat-label>{{'Admin.PrimaryCurrency.Code' | translate}}</mat-label>
+                  <input matInput formControlName="Symbol" type="text"
+                    placeholder="{{'Admin.PrimaryCurrency.Code' | translate}}">
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-form-field appearance="outline" fxFlex="100">
+                  <mat-label>{{'Admin.PrimaryCurrency.Sell' | translate}}</mat-label>
+                  <input matInput type="number" formControlName="sell"
+                    placeholder="{{'Admin.PrimaryCurrency.Sell' | translate}}" value="0">
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-form-field appearance="outline" fxFlex="100">
+                  <mat-label>{{'Admin.PrimaryCurrency.Buy' | translate}}</mat-label>
+                  <input matInput type="number" formControlName="buy"
+                    placeholder="{{'Admin.PrimaryCurrency.Buy' | translate}}" value="0">
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="center center">
+
+                <button mat-raised-button matStepperNext type="submit" color="accent">
+                  {{'Admin.PrimaryCurrency.Submit' | translate}}
+                </button>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+
+        </form>
+      </div>
+      <!-- / CONTENT -->
+
+    </div>
+    <!-- / CONTENT CARD -->
+
+  </div>
+  <!-- / CENTER -->
+
+</div>

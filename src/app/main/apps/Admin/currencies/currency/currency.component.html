@@ -1,0 +1,104 @@
+<div id="currencies" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/apps/Admin/currencies'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="currencies-image mr-8 mr-sm-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <img  [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                     [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{currency.name}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        {{'Admin.currencies.new' | translate}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{'Admin.currencies.Detail' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    class="save-currency-button"
+                    [disabled]="currencyForm.invalid"
+                    *ngIf="pageType ==='new'" (click)="addcurrency()">
+                <span>{{'Admin.currencies.Add' | translate}}</span>
+            </button>
+
+            <button mat-raised-button
+                    class="save-currency-button"
+                    [disabled]="currencyForm.invalid || currencyForm.pristine"
+                    *ngIf="pageType ==='edit'" (click)="savecurrency()">
+                <span>{{'Admin.currencies.Save' | translate}}</span>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="currencyForm" [formGroup]="currencyForm" class="currency w-100-p" fxLayout="column" fxFlex>
+
+                    <mat-tab-group>
+
+                        <mat-tab label="Basic Info">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+
+
+                                <div fxLayout="row" class="mb-1"  fxLayoutAlign="start center">
+                                    <div appearance="outline" fxFlex="100">
+                                      <label for="code" >{{'Admin.currencies.Fields.Name' | translate}}</label>
+                                      <ng-select2 formControlName="code" [data]="exampleData" class="col-md-12"></ng-select2>
+                                    </div>
+                                    </div>
+
+
+                                    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                        <mat-label> {{'Admin.currencies.Fields.order' | translate}}</mat-label>
+                                        <input matInput placeholder="{{'Admin.currencies.Fields.order' | translate}}"
+                                               name="order"
+                                               formControlName="order"
+                                               required>
+                                    </mat-form-field>
+                            </div>
+
+                        </mat-tab>
+
+
+                    </mat-tab-group>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

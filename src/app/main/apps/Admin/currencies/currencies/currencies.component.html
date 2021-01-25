@@ -1,0 +1,130 @@
+<div id="currencies" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent"
+             fxLayout="column" fxLayoutAlign="center center"
+             fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-md-0"
+                 fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    shopping_basket
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    {{'Admin.currencies.currency' | translate}}
+                </span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>{{'Admin.currencies.search' | translate}}</mat-icon>
+                    <input #filter placeholder="{{'Admin.currencies.search' | translate}}">
+                </div>
+            </div>
+            <!-- / SEARCH -->
+
+            <!-- ADD BUTTON -->
+            <button mat-raised-button
+                    [routerLink]="'/apps/Admin/currencies/new'"
+                    class="add-currency-button fuse-white mt-24 mt-md-0">
+                <span>{{'Admin.currencies.new' | translate}}</span>
+            </button>
+            <!-- / ADD BUTTON -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <mat-table class="currencies-table"
+                       #table [dataSource]="dataSource"
+                       matSort
+
+                       fusePerfectScrollbar>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                    <mat-cell *matCellDef="let currency">
+                        <p class="text-truncate">{{currency.id}}</p>
+                    </mat-cell>
+                </ng-container>
+
+            
+                <ng-container matColumnDef="Logo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Admin.currencies.Table.Image' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let currency">
+                        <img src="{{currency.logo}}">
+                     
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="code">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Admin.currencies.Table.Code' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let currency">
+                        <p class="text-truncate">{{currency.code}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="order">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Admin.currencies.Table.order' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let currency">
+                        <p class="text-truncate">{{currency.order}}</p>
+                    </mat-cell>
+                </ng-container>
+            <!-- Edit -->
+            <ng-container matColumnDef="Edit">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Admin.currencies.Table.Edit' | translate}}</mat-header-cell>
+            
+                <mat-cell *matCellDef="let currency">
+                    <a href="#" [routerLink]="'/apps/Admin/currencies/'+currency.id+'/'+currency.name"
+                        routerLinkActive="router-link-active">
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                </mat-cell>
+            </ng-container>
+            <!-- Delete -->
+            <ng-container matColumnDef="Delete">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Admin.currencies.Table.Delete' | translate}}</mat-header-cell>
+                <mat-cell *matCellDef="let currency">
+                    <a href="#" [routerLink]="'/apps/Admin/currencies/'+currency.id+'/'+currency.handle"
+                        routerLinkActive="router-link-active">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </mat-cell>
+            </ng-container>
+             
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let currency; columns: displayedColumns;"
+                         class="currency"
+                         matRipple
+                        >
+                </mat-row>
+
+            </mat-table>
+
+            <mat-paginator #paginator
+                           [length]="dataSource.filteredData.length"
+                           [pageIndex]="0"
+                           [pageSize]="10"
+                           [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

@@ -1,0 +1,259 @@
+<div id="profile" class="page-layout simple tabbed" fusePerfectScrollbar>
+
+  <!-- HEADER -->
+  <div class="header p-24">
+
+
+    <div class="mb-24 items" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+
+      <div fxLayout="column" fxFlex="80" fxFlex.gt-md="65" fxLayoutAlign="center ">
+
+
+        <form class="mat-card mat-cerv mat-elevation-z4 p-24 mr-24  offerform" (ngSubmit)="AddOffer()" fxLayout="column"
+          fxLayoutAlign="center" fxFlex="80" fxFlex.gt-md="50" name="form" [formGroup]="form">
+
+          <div fxLayout="column" fxFlex="80" fxLayoutAlign="start center">
+            <h1  class="myheader"  fxLayoutAlign="start start" fxFlex="100"> {{'Home.AllCurrencies' | translate}}</h1>
+
+            <carousel   height="148" arrowsTheme="dark" arrowsOutside="true" autoplay="true" loop="true">
+
+
+              <!-- PREVIEW -->
+
+
+              <div *ngFor="let currency of currencies" fxLayout="column" fxLayoutAlign="center center"
+                class="fuse-card center carousel-cell">
+                <div fxLayout="row" fxLayoutAlign="start top" fxFlex="100">
+                  <div fxFlex="33">
+                    <img src={{currency.logo}}>
+                  </div>
+                  <div fxflex="67" class="p-16">
+                    <div class="h1">{{currency.code}}</div>
+                  </div>
+
+                </div>
+        
+                <div class="width" fxLayout="row" fxLayoutAlign="center center" fxFlex="100">
+                  <div  fxFlex="50" >
+                    <div class="buy">
+                      buy  <mat-icon matSuffix class="myicon">arrow_upward</mat-icon> 
+                    </div>
+                    <div>
+                      {{currency.buy}}
+
+                    </div>
+
+                  </div>
+                  <div  fxflex="50">
+                    <div class="sell">
+                      sell   <mat-icon matSuffix class="myicon">arrow_downward</mat-icon>
+
+                    </div>
+                    <div>
+                      {{currency.sell}}
+
+                    </div>
+
+                  </div>
+               
+                </div>
+
+
+
+              </div>
+
+
+              <!-- / PREVIEW -->
+
+              <!-- SOURCE -->
+
+              <!-- / SOURCE -->
+
+
+            </carousel>
+
+          </div>
+          <div class="mt-1" fxLayout="column" fxFlex="80" fxLayoutAlign="start center">
+             <h1  class="myheader"  fxLayoutAlign="start start" fxFlex="100">{{'Home.Payed' | translate}}</h1>
+            <carousel  height="148" arrowsTheme="dark" arrowsOutside="true" autoplay="true" loop="true">
+
+
+              <!-- PREVIEW -->
+
+
+              <div *ngFor="let currency of currencies" fxLayout="column" fxLayoutAlign="center center"
+                class="fuse-card center carousel-cell">
+                <div fxLayout="row" fxLayoutAlign="start top" fxFlex="100">
+                  <div fxFlex="33">
+                    <img src={{currency.logo}}>
+                  </div>
+                  <div fxflex="67" class="p-16">
+                    <div class="h1">{{currency.code}}</div>
+                  </div>
+
+                </div>
+        
+                <div class="width" fxLayout="row" fxLayoutAlign="center center" fxFlex="100">
+                  <div  fxFlex="50" >
+                    <div class="buy">
+                      {{'Home.Buy' | translate}} <mat-icon matSuffix class="myicon">arrow_upward</mat-icon> 
+                    </div>
+                    <div>
+                      {{currency.buy}}
+
+                    </div>
+
+                  </div>
+                  <div  fxflex="50">
+                    <div class="sell">
+                      {{'Home.Sell' | translate}}   <mat-icon matSuffix class="myicon">arrow_downward</mat-icon>
+
+                    </div>
+                    <div>
+                      {{currency.sell}}
+
+                    </div>
+
+                  </div>
+               
+                </div>
+
+
+
+              </div>
+
+
+              <!-- / PREVIEW -->
+
+              <!-- SOURCE -->
+
+              <!-- / SOURCE -->
+
+
+            </carousel>
+
+          </div>
+
+
+
+
+
+        </form>
+        <div class="mat-card mt-4 mat-elevation-z4 p-24 mr-24 mb-24 search-wrapper" fxLayout="column"
+          fxLayout.gt-md="row" fxLayoutAlign="start" fxFlex="20">
+          <div class="search">
+            <mat-icon>search</mat-icon>
+            <input #filter placeholder="{{'Home.Search' | translate}}">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <div class="offers">
+    <div class="content-card">
+
+      <mat-table class="Offers-table" #table [dataSource]="dataSource" matSort fusePerfectScrollbar>
+
+        <!-- ID Column -->
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Home.Table.ID' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <p class="text-truncate">{{Offer.id}}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Amount Column -->
+        <ng-container matColumnDef="UserName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{'Home.Table.UserName' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <p class="text-truncate">{{Offer.username}}</p>
+          </mat-cell>
+        </ng-container>
+
+
+        <!-- Amount Column -->
+        <ng-container matColumnDef="Amount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Home.Table.Amount' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <p class="text-truncate">{{Offer.amount}}</p>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="currency">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Home.Table.currency' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <p class="text-truncate">{{Offer.currency}}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Type Column -->
+        <ng-container matColumnDef="Type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Home.Table.Type' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <p class="text-truncate">{{ Offer.offerType }}</p>
+          </mat-cell>
+        </ng-container>
+        <!-- Country -->
+        <ng-container matColumnDef="Country">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Home.Table.Country' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <p class="text-truncate">{{Offer.country}}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- city -->
+        <ng-container matColumnDef="city">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Home.Table.city' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <p class="text-truncate">{{Offer.city}}</p>
+          </mat-cell>
+        </ng-container>
+
+
+        <!-- center -->
+        <ng-container matColumnDef="center">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Home.Table.center' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <p class="text-truncate">{{Offer.center}}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Location -->
+        <ng-container matColumnDef="location">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Home.Table.location' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <p class="text-truncate">{{Offer.location}}</p>
+          </mat-cell>
+        </ng-container>
+        <!-- Action -->
+        <ng-container matColumnDef="Request">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'Home.Table.Request' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let Offer">
+            <a (click)="Request(Offer.id,Offer.userId,Offer)">
+              <p class="text-truncate">
+                <mat-icon>edit</mat-icon>
+              </p>
+            </a>
+          </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+        <mat-row *matRowDef="let Offer; columns: displayedColumns;" class="{{Offer.offerType}}" matRipple>
+        </mat-row>
+
+      </mat-table>
+
+      <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+
+    </div>
+  </div>
+</div>

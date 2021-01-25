@@ -1,0 +1,138 @@
+<div id="Offers" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- Offer -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/apps/Offer/Offers'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="Offers-image mr-8 mr-sm-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <img  [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                     [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        {{'Offers.new' | translate}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{'Offers.Detail' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    class="save-Offer-button"
+                    [disabled]="Offer.invalid"
+                    *ngIf="pageType ==='new'" (click)="addOffer()">
+                <span>{{'Offers.Add' | translate}}</span>
+            </button>
+
+            <button mat-raised-button
+                    class="save-Offer-button"
+                    [disabled]="OfferForm.invalid || OfferForm.pristine"
+                    *ngIf="pageType ==='edit'" (click)="saveOffer()">
+                <span>{{'Offers.Save' | translate}}</span>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="OfferForm" [formGroup]="OfferForm" class="Offer w-100-p" fxLayout="column" fxFlex>
+
+                    <mat-tab-group>
+
+                        <mat-tab label="Basic Info">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar >
+
+                                <mat-form-field appearance="outline" class="w-100-p" >
+                                    <mat-label>{{'Offers.Fields.Amount' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'Offers.Fields.Amount' | translate}}"
+                                           name="Amount"
+                                           formControlName="Amount"
+                                           type="number"
+                                           required>
+                                </mat-form-field>
+                                
+                                <div fxLayout="row" class="mb-1"  fxLayoutAlign="start center">
+                                    <div appearance="outline" fxFlex="100">
+                                      <label for="currency" >{{'Offers.Fields.currency' | translate}}</label>
+                                      <ng-select2 formControlName="currency" [data]="exampleData" class="col-md-12"></ng-select2>
+                                    </div>
+                                    </div>
+
+                                <mat-form-field appearance="outline"  class="w-100-p" >
+                                    <mat-label>{{'Offers.Fields.City' | translate}}</mat-label>
+                                    <mat-select formControlName="cityId"
+                                                required>
+                                        <mat-option  *ngFor="let City of cities"
+                                                    [value]="City.id" (click)="getcenters(City.id)">
+                                            {{City.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="w-100-p" >
+                                    <mat-label>{{'Offers.Fields.Center' | translate}}</mat-label>
+                                    <mat-select formControlName="centerId"
+                                            >
+                                        <mat-option *ngFor="let Center of centers"
+                                                    [value]="Center.id">
+                                            {{Center.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Offers.Fields.location' | translate}}</mat-label>
+                                    <textarea matInput placeholder="{{'Offers.Fields.location' | translate}}"
+                                              name="location"
+                                              formControlName="location"
+                                              rows="5">
+                                    </textarea>
+                                </mat-form-field>
+                            </div>
+
+                          
+
+
+                            
+
+                     
+                        </mat-tab>
+
+
+                    </mat-tab-group>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / Offer -->
+
+</div>

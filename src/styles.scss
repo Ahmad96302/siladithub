@@ -1,0 +1,34 @@
+// Import Fuse core library
+
+@import "@fuse/scss/core";
+
+// Import app.theme.scss
+@import "app/app.theme";
+
+.alert{
+   border: 1px solid rgb(240, 143, 143);
+   background-color: rgb(240, 143, 143) ;
+   padding: 5px;
+   border-radius: 25px;
+   text-align: center;
+}
+.alertSucssess{
+   border: 1px solid rgb(240, 143, 143);
+   background-color: rgb(240, 143, 143) ;
+   padding: 5px;
+   border-radius: 25px;
+   text-align: center;
+}span.select2.select2-container.select2-container--default {
+  width: 100% !important;
+}
+.select2-selection{
+  width: 100%;
+}
+
+
+.select2-search{
+  width: 100% ;
+}
+.select2-results{
+  width: 100%;
+}

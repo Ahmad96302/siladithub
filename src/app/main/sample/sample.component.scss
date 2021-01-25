@@ -1,0 +1,109 @@
+@import "src/@fuse/scss/fuse";
+ngb-carousel .wrapper {
+    position: relative;
+    height: 0;
+    padding-top: 55%; /* Keep ratio for 900x500 images */
+  }
+  
+#profile {
+
+   .mat-card {
+     
+        border-radius: 25px;
+    }
+    .fuse-card{
+       min-width: unset; 
+       max-width: unset;
+       float: left;
+    }
+    .header {
+        height: 632px;
+        min-height: 632px;
+        max-height: 632px;
+        background: url('/assets/images/backgrounds/Component.png') no-repeat 0 45%;
+        background-size: cover;
+        .mt-1{
+            margin-top: 2%;
+        }
+        .mat-cerv {
+            background-color: #ffffff73;
+        }
+          .width{
+             width:  80%;
+          }
+          .buy{
+              color: green ;
+          }
+          .sell{
+            color: red ;
+        }
+        .myicon {
+            font-size: 17px;
+            position: absolute;
+        }
+        .myheader{
+            width: 89%;
+            color: white;
+        }
+        .profile-image {
+            margin-right: 24px;
+
+            @include media-breakpoint('sm') {
+                margin: 0 0 16px 0;
+            }
+        }
+   
+      
+        .sila{
+            color: #ffff;
+            background:linear-gradient(#7D2F65 ,#D34559);
+            padding: 3px 32px;
+            border-radius: 16px;
+        }
+        .name {
+            font-size: 34px;
+            color: #FFFFFF;
+
+            @include media-breakpoint('sm') {
+                margin-bottom: 32px;
+            }
+        }
+
+        .actions {
+
+            button {
+                text-transform: none;
+                padding: 0 16px;
+                margin: 0 0 0 8px;
+            }
+        }
+    }
+
+    .content {
+        flex: 1;
+
+        mat-tab-group {
+            height: 100%;
+
+            .mat-tab-body-wrapper {
+                flex-grow: 1;
+            }
+        }
+    }
+   .items{
+       height: 100%;
+   }
+   .offers{
+       .offer{
+           border-left:#32D6DB solid 10px;
+        
+
+       }
+       .Order{
+        border-left:#F24957 solid 10px;
+
+       }
+   }
+}
+
+

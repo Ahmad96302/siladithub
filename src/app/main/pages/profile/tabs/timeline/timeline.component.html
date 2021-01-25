@@ -1,0 +1,32 @@
+<div id="timeline" class="p-24" fxLayout="row wrap">
+
+    <div class="timeline-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="55" fxFlex.gt-md="65">
+
+        <div class="profile-box add-post">
+            <form name="infoForm" [formGroup]="infoForm" class="City w-100-p" fxLayout="column" fxFlex>
+                <div class="form" fxFlex>
+                    <mat-form-field appearance="outline" class="w-100-p">
+                        <mat-label>Phone</mat-label>
+                        <input matInput placeholder="Phone" name="Phone" formControlName="phone" type="number" required>
+                    </mat-form-field>
+                    <textarea placeholder="Location.." formControlName="location"></textarea>
+
+
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <button mat-raised-button color="accent" (click)="saveinfo()">save changes</button>
+
+                    </div>
+
+
+
+                </div>
+            </form>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,240 @@
+<div id="profile" class="page-layout simple tabbed">
+
+    <!-- HEADER -->
+    <div class="header p-24" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+        fxLayoutAlign.gt-sm="space-between end">
+        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+
+        <div class="user-info" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="start center">
+            <img class="profile-image avatar huge" src="data:image/png;base64,{{userDetails.avatar}}"
+                [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}" (click)="file.click()">
+            <div class="name" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                {{userDetails.fullName}}
+            </div>
+        </div>
+
+
+        <div class="actions" fxLayout="row" fxLayoutAlign="end center" [@animate]="{value:'*',params:{delay:'200ms'}}">
+
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <mat-tab-group dynamicHeight="true">
+
+            <mat-tab label="About">
+                <profile-about></profile-about>
+            </mat-tab>
+
+            <mat-tab label="Personal Data">
+                <profile-timeline></profile-timeline>
+            </mat-tab>
+            <mat-tab label="statistics">
+                <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom
+                    [@animateStagger]="{value:'50'}">
+
+                    <!-- myOffers WIDGET -->
+                    <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-xs="25" fxFlex.gt-md="25">
+
+                        <!-- Front -->
+                        <div class="fuse-widget-front">
+                            <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                <div class="h3">My Offers</div>
+
+                                <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                                    aria-label="more">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                            </div>
+
+                            <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                                <div class="red-fg font-size-72 line-height-72" >
+                                   <span style="color: rgb(2, 72, 119);" >{{countOffers}}</span> 
+                                </div>
+                                <div class="h3 secondary-text font-weight-500">My Offers
+                                </div>
+                            </div>
+
+                            <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                                <span class="h4 secondary-text text-truncate">
+                                    My Offers
+                                </span>
+                                <span class="h4 ml-8">{{countOffers}}</span>
+                            </div>
+                        </div>
+                        <!-- / Front -->
+
+                        <!-- Back -->
+                        <div class="fuse-widget-back p-16 pt-32">
+                            <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                                aria-label="Flip widget">
+                                <mat-icon class="s-16">close</mat-icon>
+                            </button>
+
+                            <div>
+                                My Offers
+                            </div>
+                        </div>
+                        <!-- / Back -->
+
+                    </fuse-widget>
+                    <!-- /myOffers WIDGET -->
+
+                    <!-- myorders WIDGET -->
+                    <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-xs="25" fxFlex.gt-md="25">
+
+                        <!-- Front -->
+                        <div class="fuse-widget-front">
+                            <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                <div class="h3">My Orders</div>
+
+                                <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                                    aria-label="more">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                            </div>
+
+                            <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                                <div class="red-fg font-size-72 line-height-72">
+                                    <span style="color: rgb(2, 72, 119);" >{{countOrders}}</span> 
+                                </div>
+                                <div class="h3 secondary-text font-weight-500">My Orders
+                                </div>
+                            </div>
+
+                            <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                                <span class="h4 secondary-text text-truncate">
+                                    My Orders
+                                </span>
+                                <span class="h4 ml-8">{{countOrders}}</span>
+                            </div>
+                        </div>
+                        <!-- / Front -->
+
+                        <!-- Back -->
+                        <div class="fuse-widget-back p-16 pt-32">
+                            <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                                aria-label="Flip widget">
+                                <mat-icon class="s-16">close</mat-icon>
+                            </button>
+
+                            <div>
+                                My Orders
+                            </div>
+                        </div>
+                        <!-- / Back -->
+
+                    </fuse-widget>
+                    <!-- /myorders WIDGET -->
+
+                    <!-- SuccessWIDGET -->
+                    <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-xs="25" fxFlex.gt-md="25">
+
+                        <!-- Front -->
+                        <div class="fuse-widget-front">
+                            <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                <div class="h3">Success Offers</div>
+
+                                <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                                    aria-label="more">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                            </div>
+
+                            <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                                <div class="red-fg font-size-72 line-height-72">
+                                    <span style="color:rgb(22, 136, 7);" >{{successOffers}}</span> 
+                                </div>
+                                <div class="h3 secondary-text font-weight-500">Success Offers
+                                </div>
+                            </div>
+
+                            <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                                <span class="h4 secondary-text text-truncate">
+                                    Success Offers
+                                </span>
+                                <span class="h4 ml-8">{{successOffers}}</span>
+                            </div>
+                        </div>
+                        <!-- / Front -->
+
+                        <!-- Back -->
+                        <div class="fuse-widget-back p-16 pt-32">
+                            <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                                aria-label="Flip widget">
+                                <mat-icon class="s-16">close</mat-icon>
+                            </button>
+
+                            <div>
+                                Success Offers
+                            </div>
+                        </div>
+                        <!-- / Back -->
+
+                    </fuse-widget>
+                    <!-- /SuccessWIDGET -->
+                    <!-- Successorder -->
+                    <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-xs="25" fxFlex.gt-md="25">
+
+                        <!-- Front -->
+                        <div class="fuse-widget-front">
+                            <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                <div class="h3">Success Order</div>
+
+                                <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                                    aria-label="more">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                            </div>
+
+                            <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                                <div class="red-fg font-size-72 line-height-72">
+                                    <span style="color: rgb(22, 136, 7);" >{{successOrders}}</span> 
+                                </div>
+                                <div class="h3 secondary-text font-weight-500">Success Order
+                                </div>
+                            </div>
+
+                            <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                                <span class="h4 secondary-text text-truncate">
+                                    Success Order
+                                </span>
+                                <span class="h4 ml-8">{{successOrders}}</span>
+                            </div>
+                        </div>
+                        <!-- / Front -->
+
+                        <!-- Back -->
+                        <div class="fuse-widget-back p-16 pt-32">
+                            <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                                aria-label="Flip widget">
+                                <mat-icon class="s-16">close</mat-icon>
+                            </button>
+
+                            <div>
+                                Success Order
+                            </div>
+                        </div>
+                        <!-- / Back -->
+
+                    </fuse-widget>
+                    <!-- /Successorder -->
+
+
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

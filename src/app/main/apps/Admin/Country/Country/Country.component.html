@@ -1,0 +1,94 @@
+<div id="Countries" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/apps/Admin/Countries'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="Country-image mr-8 mr-sm-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <img  [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                     [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{Country.name}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        {{'Admin.Countries.New' | translate}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{'Admin.Countries.Detail' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    class="save-Country-button"
+                    [disabled]="CountryForm.invalid"
+                    *ngIf="pageType ==='new'" (click)="addCountry()">
+                <span>{{'Admin.Countries.Add' | translate}}</span>
+            </button>
+
+            <button mat-raised-button
+                    class="save-Country-button"
+                    [disabled]="CountryForm.invalid || CountryForm.pristine"
+                    *ngIf="pageType ==='edit'" (click)="saveCountry()">
+                <span>{{'Admin.Countries.Save' | translate}}</span>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="CountryForm" [formGroup]="CountryForm" class="Country w-100-p" fxLayout="column" fxFlex>
+
+                    <mat-tab-group>
+
+                        <mat-tab label="Basic Info">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Admin.Fields.Name' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'Admin.Fields.Name' | translate}}"
+                                           name="name"
+                                           formControlName="name"
+                                           required>
+                                </mat-form-field>
+                            </div>
+
+                        </mat-tab>
+
+
+                    </mat-tab-group>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

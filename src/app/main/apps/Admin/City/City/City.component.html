@@ -1,0 +1,107 @@
+<div id="City" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/apps/Admin/Cities'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div class="City-image mr-8 mr-sm-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <img  [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                     [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{City.name}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        {{'Admin.Cities.new' | translate}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{'Admin.Cities.Detail' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    class="save-City-button"
+                    [disabled]="CityForm.invalid"
+                    *ngIf="pageType ==='new'" (click)="addCity()">
+                <span>{{'Admin.Cities.Add' | translate}}</span>
+            </button>
+
+            <button mat-raised-button
+                    class="save-City-button"
+                    [disabled]="CityForm.invalid || CityForm.pristine"
+                    *ngIf="pageType ==='edit'" (click)="saveCity()">
+                <span>{{'Admin.Cities.Save' | translate}}</span>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="CityForm" [formGroup]="CityForm" class="City w-100-p" fxLayout="column" fxFlex>
+  
+                    <mat-tab-group>
+
+                        <mat-tab label="Basic Info">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>{{'Admin.Cities.Fields.Name' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'Admin.Cities.Fields.Name' | translate}}"
+                                           name="name"
+                                           formControlName="name"
+                                           required>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <mat-form-field appearance="outline" class="mr-16" fxFlex>
+                                    <mat-label>{{'Admin.Cities.Fields.Country' | translate}}</mat-label>
+                                    <mat-select formControlName="countryId"
+                                                required>
+                                        <mat-option *ngFor="let country of countries"
+                                                    [value]="country.id">
+                                            {{country.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </mat-tab>
+
+
+                    </mat-tab-group>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>
