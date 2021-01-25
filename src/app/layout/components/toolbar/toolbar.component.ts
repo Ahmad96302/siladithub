@@ -119,7 +119,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         if(sessionStorage.getItem('key')){
             this.userDetails =this.AuthService.userDetails();
             this.myOfferAccepted();
-            this.subscribeToEventsOffer();
+
 
             }
             else{
@@ -196,6 +196,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     async myOfferAccepted(){
         this._httpClient.get(myOfferAccepted,this.option).subscribe((response:any) =>{
             this.notfi=response;
+            console.log(this.notfi);    
             if(this.notfi == null){
                 this.hidenotfi = false
             }else{

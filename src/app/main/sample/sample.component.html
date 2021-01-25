@@ -15,13 +15,13 @@
           <div fxLayout="column" fxFlex="80" fxLayoutAlign="start center">
             <h1  class="myheader"  fxLayoutAlign="start start" fxFlex="100"> {{'Home.AllCurrencies' | translate}}</h1>
 
-            <carousel   height="148" arrowsTheme="dark" arrowsOutside="true" autoplay="true" loop="true">
+            <carousel style="direction: ltr;"  height="148" arrowsTheme="dark" arrowsOutside="true" autoplay="true" loop="true">
 
 
               <!-- PREVIEW -->
 
 
-              <div *ngFor="let currency of currencies" fxLayout="column" fxLayoutAlign="center center"
+              <div class="{{lang}}" *ngFor="let currency of currencies" fxLayout="column" fxLayoutAlign="center center"
                 class="fuse-card center carousel-cell">
                 <div fxLayout="row" fxLayoutAlign="start top" fxFlex="100">
                   <div fxFlex="33">
@@ -73,15 +73,15 @@
             </carousel>
 
           </div>
-          <div class="mt-1" fxLayout="column" fxFlex="80" fxLayoutAlign="start center">
+          <div class="mt-1  " fxLayout="column" fxFlex="80" fxLayoutAlign="start center">
              <h1  class="myheader"  fxLayoutAlign="start start" fxFlex="100">{{'Home.Payed' | translate}}</h1>
-            <carousel  height="148" arrowsTheme="dark" arrowsOutside="true" autoplay="true" loop="true">
+            <carousel style="direction: ltr;" height="148" arrowsTheme="dark" arrowsOutside="true" autoplay="true" loop="true">
 
 
               <!-- PREVIEW -->
 
 
-              <div *ngFor="let currency of currencies" fxLayout="column" fxLayoutAlign="center center"
+              <div class="{{lang}}"  *ngFor="let currency of currencies" fxLayout="column" fxLayoutAlign="center center"
                 class="fuse-card center carousel-cell">
                 <div fxLayout="row" fxLayoutAlign="start top" fxFlex="100">
                   <div fxFlex="33">
@@ -156,7 +156,7 @@
   <div class="offers">
     <div class="content-card">
 
-      <mat-table class="Offers-table" #table [dataSource]="dataSource" matSort fusePerfectScrollbar>
+      <mat-table class="Offers-table {{lang}}" #table [dataSource]="dataSource" matSort fusePerfectScrollbar>
 
         <!-- ID Column -->
 

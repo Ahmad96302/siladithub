@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +21,7 @@ import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.componen
         MatIconModule,
         MatMenuModule,
         MatToolbarModule,
-
+        TranslateModule,
         FuseSharedModule,
         FuseSearchBarModule,
         FuseShortcutsModule

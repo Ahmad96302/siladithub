@@ -108,7 +108,7 @@ export const navigation: FuseNavigation[] = [
  {
     id   : 'Orders',
     title: 'Orders',
-    translate: 'NAV.Offers.TITLE',
+    translate: 'NAV.Orders.TITLE',
     type : 'item',
     icon : 'person',
     url  : '/apps/Order/Orders'
