@@ -206,8 +206,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     private subscribeToEventsOffer(): void {  
         this.signalRService.newNotfiy.subscribe((message1: any) => {  
           this._ngZone.run(() => { 
-              console.log(message1);
-              this.notfi.push(message1);  
+              this.notfi.push(message1);
               if(this.notfi == null){
                 this.hidenotfi = false
             }else{

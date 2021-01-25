@@ -112,7 +112,7 @@
 
             <button mat-button class="contact"
                     *ngFor="let chat of user.chatList | filter: searchText"
-                    (click)="getChat(chat.contactId)" ngClass="{'unread':contact.unread}"
+                    (click)="getChat(chat.contactId,chat.id)" ngClass="{'unread':contact.unread}"
                     [@animate]="{value:'*',params:{y:'100%'}}">
 
                 <div fxLayout="row" fxLayoutAlign="start center">

@@ -1,3 +1,4 @@
+import { OfferView } from './../../Modules/offerView';
 import { currency } from './../apps/Admin/currencies/currency/currency.model';
 import { UserCurrenciesService } from './../apps/UserCurrencies/UserCurrencies.service';
 import { offerType } from './../apps/Offers/Offer/Offermodel';
@@ -164,6 +165,7 @@ AddOffer(){
         });
 }
 MessageForCreation:MessageForCreationDto;
+OfferView1:OfferView;
 userDetails:userDetails;
 token :string = sessionStorage.getItem('key');
 async Request(x,accountID,offer){
@@ -174,19 +176,24 @@ async Request(x,accountID,offer){
      (await this._OfferService.AcceptOffer(x))
      .subscribe((respons) => 
      {
+
         if(respons['message']=='your request is approved'){
-            this.signalRService.sendRequset(offer,+accountID);
+            var offers=[{'accepterName': this.UserDetails.fullName,'acepted': false,'acepterId': 8,'amount':offer.amount,'center': null,'centerId': null,'city': null,'cityId': 0,'country': null,'countryName': null,'currency': null,'id': 1068,'location': null,offerType: 0,'status': 0,'userId': 1,'username': "ahmad Khalil"}]
+            this.OfferView1 = new OfferView(1,'',2,'',this.UserDetails.fullName,'','',1,offer.amount,1,'','','',true)
+            this.signalRService.sendRequset(this.OfferView1,+accountID);
             this.mat.open(respons['message'],"Ok" , {verticalPosition:'top' , duration:2000})
             this.MessageForCreation= new MessageForCreationDto(accountID,+this.UserDetails.id,this.UserDetails.fullName,'انا مهتم بالطلب التحويل الذي قمت بعرضه','2021-08-02',null);
             
            ( this.HttpClient.post(chatsInsertforRequest,this.MessageForCreation,option)).subscribe(respons=>{})
-           this.Router.navigate(['/apps/chat']);
+           
+
         } 
         else{
             
             this.mat.open(respons['message'],"Ok" , {verticalPosition:'top' , duration:2000})
         }
      });
+     this.Router.navigateByUrl('/apps/chat');
 }
 }
 

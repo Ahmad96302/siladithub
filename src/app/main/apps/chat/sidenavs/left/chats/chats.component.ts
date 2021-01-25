@@ -1,3 +1,5 @@
+import { IsRead } from './../../../../../../../URL_API';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { Subject } from 'rxjs';
@@ -36,7 +38,8 @@ export class ChatChatsSidenavComponent implements OnInit, OnDestroy
     constructor(
         private _chatService: ChatService,
         private _fuseMatSidenavHelperService: FuseMatSidenavHelperService,
-        public _mediaObserver: MediaObserver
+        public _mediaObserver: MediaObserver,
+        public http:HttpClient
     )
     {
         // Set the defaults
@@ -94,10 +97,17 @@ export class ChatChatsSidenavComponent implements OnInit, OnDestroy
      *
      * @param contact
      */
-    getChat(contact): void
-    {
-        this._chatService.getChat(contact);
+    token :string = sessionStorage.getItem('key');
 
+    getChat(contact,chatId): void
+    {
+        var option = {'headers': {
+            'chatId':chatId,
+            'Authorization': 'Bearer ' + this.token,
+            'Content-Type': 'application/json'
+        }};   
+        this._chatService.getChat(contact);
+        this.http.get(IsRead,option).subscribe(Response =>{})
         if ( !this._mediaObserver.isActive('gt-md') )
         {
             this._fuseMatSidenavHelperService.getSidenav('chat-left-sidenav').toggle();

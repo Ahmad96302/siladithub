@@ -70,7 +70,9 @@ export class ProfileAboutComponent implements OnInit, OnDestroy
   async CloseOffer(id){
 (await this._ProfileService.CloseOffer(id).subscribe((respons) =>{
     this.mat.open(respons['message'],"Ok" , {verticalPosition:'top' , duration:2000})
+   
 }));
+location.reload();
     }
     token :string = sessionStorage.getItem('key');
  async  SuccessOffer(id,acepterId){
@@ -84,7 +86,10 @@ export class ProfileAboutComponent implements OnInit, OnDestroy
             this.MessageForCreation= new MessageForCreationDto(acepterId,+this.UserDetails.id,this.UserDetails.fullName,'لقد تم قبول العرض','2021-08-02',null);
             
             ( this.HttpClient.post(chatsInsertforRequest,this.MessageForCreation,option)).subscribe(respons=>{})
-        }))
+            location.reload();
+        }
+        
+        ))
         );
 
     }
