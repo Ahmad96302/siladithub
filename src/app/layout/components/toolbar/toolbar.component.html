@@ -7,7 +7,7 @@
             <button mat-icon-button class="navbar-toggle-button" *ngIf="!hiddenNavbar && !rightNavbar"
                 (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
                 <mat-icon class="secondary-text">menu</mat-icon>
-            </button>
+            </button> 
 
             <div class="toolbar-separator" *ngIf="!hiddenNavbar && !rightNavbar" fxHide.gt-md></div>
 
@@ -27,11 +27,11 @@
 
             <button mat-button [matMenuTriggerFor]="notf" class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>Notifications</span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm> {{'toolbar.Notifications' | translate}}  </span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon><span *ngIf="!hidenotfi" class="w3-badge w3-red">{{countNotfiy}}</span>
                 </div>
             </button>
-            <mat-menu class="menuN" #notf="matMenu" [overlapTrigger]="false"> 
+            <mat-menu  class="{{selectedLanguage.id}}" class="menuN" #notf="matMenu" [overlapTrigger]="false"> 
                     <span mat-menu-item class="menuNotfi" *ngFor="let item of notfi" routerLink='/apps/chat' >this user <strong> {{item.accepterName}}</strong> has Accepted Your Offer <strong>{{item.amount}}</strong> </span>
             </mat-menu>
             <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
@@ -41,21 +41,21 @@
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
             </button>
-            <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+            <mat-menu class="{{selectedLanguage.id}}"   #userMenu="matMenu" [overlapTrigger]="false">
 
-                <button [routerLink]="['/pages/profile']" routerLinkActive="router-link-active" mat-menu-item>
+                <button   [routerLink]="['/pages/profile']" routerLinkActive="router-link-active" mat-menu-item>
                     <mat-icon>account_circle</mat-icon>
-                    <span>My Profile</span>
+                    <span> {{'toolbar.myprofile' | translate}}</span>
                 </button>
 
-                <button [routerLink]="['/apps/chat']" mat-menu-item class="">
+                <button  [routerLink]="['/apps/chat']" mat-menu-item class="">
                     <mat-icon>mail</mat-icon>
-                    <span>Inbox</span>
+                    <span>{{'toolbar.inbox' | translate}}</span>
                 </button>
 
-                <button (click)='logout()' routerLinkActive="router-link-active" mat-menu-item class="">
+                <button  (click)='logout()' routerLinkActive="router-link-active" mat-menu-item class="">
                     <mat-icon>exit_to_app</mat-icon>
-                    <span>Logout</span>
+                    <span>{{'toolbar.Logout' | translate}}</span>
                 </button>
 
             </mat-menu>
@@ -70,16 +70,20 @@
 
             <button mat-button fxHide fxShow.gt-xs class="language-button" [matMenuTriggerFor]="languageMenu">
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <img class="flag mr-8" [src]="'assets/icons/flags/'+selectedLanguage.flag+'.png'">
+                    <img *ngIf="selectedLanguage.id != 'ar'" class="flag mr-8" [src]="'assets/icons/flags/'+selectedLanguage.flag+'.png'">
+                    <img *ngIf="selectedLanguage.id == 'ar'" class="flag ml-8" [src]="'assets/icons/flags/'+selectedLanguage.flag+'.png'">
+
                     <span class="iso text-uppercase">{{selectedLanguage.id}}</span>
                 </div>
             </button>
 
-            <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
+            <mat-menu class="{{selectedLanguage.id}}" #languageMenu="matMenu" [overlapTrigger]="false">
 
                 <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
                     <span fxLayout="row" fxLayoutAlign="start center">
-                        <img class="flag mr-16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
+                        <img *ngIf="selectedLanguage.id != 'ar'" class="flag mr-16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
+                        <img *ngIf="selectedLanguage.id == 'ar'" class="flag ml-16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
+                          
                         <span class="iso">{{lang.title}}</span>
                     </span>
                 </button>

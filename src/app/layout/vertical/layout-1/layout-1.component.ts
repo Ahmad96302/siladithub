@@ -17,6 +17,7 @@ export class VerticalLayout1Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+    lang :any;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -33,7 +34,7 @@ export class VerticalLayout1Component implements OnInit, OnDestroy
         private AuthService:AuthService
     )
     {
-
+        this.lang=localStorage.getItem('lang');
         if(sessionStorage.getItem('key'))
         {
             this.user=this.AuthService.userDetails();
@@ -68,6 +69,10 @@ export class VerticalLayout1Component implements OnInit, OnDestroy
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((config) => {
                 this.fuseConfig = config;
+                if(localStorage.getItem('lang')=="ar"){
+                    this.fuseConfig.layout.navbar.position="right"
+    
+                    }
             });
     }
 

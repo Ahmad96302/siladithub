@@ -1,10 +1,9 @@
-import { SignalRService } from '@fuse/services/signal-r.service';
 import { HttpClient } from '@angular/common/http';
 import { myOfferAccepted } from './../../../../URL_API';
 import { ProfileService } from 'app/main/pages/profile/profile.service';
 import { userDetails } from './../../../Modules/userDetails';
 import { AuthService } from './../../../main/pages/authentication/Auth/auth.service';
-import { Component, OnDestroy, OnInit, ViewEncapsulation, NgZone } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
@@ -52,8 +51,6 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _translateService: TranslateService,
         private AuthService:AuthService,
         private _httpClient: HttpClient,
-        private signalRService:SignalRService,
-        private _ngZone: NgZone,
     )
     {
         // Set the defaults
@@ -119,7 +116,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         if(sessionStorage.getItem('key')){
             this.userDetails =this.AuthService.userDetails();
             this.myOfferAccepted();
-            this.subscribeToEventsOffer();
+
 
             }
             else{
@@ -196,6 +193,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     async myOfferAccepted(){
         this._httpClient.get(myOfferAccepted,this.option).subscribe((response:any) =>{
             this.notfi=response;
+            console.log(this.notfi);    
             if(this.notfi == null){
                 this.hidenotfi = false
             }else{
@@ -203,17 +201,4 @@ export class ToolbarComponent implements OnInit, OnDestroy
             }      
         })
     }
-    private subscribeToEventsOffer(): void {  
-        this.signalRService.newNotfiy.subscribe((message1: any) => {  
-          this._ngZone.run(() => { 
-              console.log(message1);
-              this.notfi.push(message1);  
-              if(this.notfi == null){
-                this.hidenotfi = false
-            }else{
-                this.countNotfiy = this.notfi.length;
-            } 
-          });  
-        });  
-      }
 }

@@ -100,6 +100,27 @@ navbar {
                 }
             }
         }
+
+        &.ar{
+            direction: rtl;
+            .nav-link{
+                margin-right:unset !important;
+                margin-left: 16px !important;
+                border-radius:20px 0 0 20px !important;
+            }
+            .nav-link-icon{
+                margin-right:unset !important;
+                margin-left: 16px !important;              
+            }
+            .collapsable-arrow{
+                transform: rotate(180deg) !important;
+            }
+            .open{
+                .collapsable-arrow{
+                    transform: rotate(90deg) !important;
+                } 
+            }
+        }
     }
 
     navbar-vertical-style-1 {

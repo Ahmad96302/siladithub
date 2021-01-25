@@ -5,7 +5,10 @@ toolbar {
     display: flex;
     flex: 0 0 auto;
     z-index: 4;
-
+   
+    &.ar{
+        direction: rtl;
+    }
     &.below {
         z-index: 2;
     }
@@ -52,10 +55,19 @@ toolbar {
         }
     }
 }
-
-  .mat-menu-content {
-    width: 150%;
+.mat-menu-panel{
+    &.ar{
+    direction: rtl;
+    .mat-menu-item{
+        text-align: right;
+    }
+     .mat-icon{
+        margin-right: unset;
+        margin-left: 16px;
+    }
 }
+}
+
 .badge{
     background-color: rgb(221, 69, 69);
     padding: 5px;

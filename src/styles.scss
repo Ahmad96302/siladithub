@@ -32,3 +32,18 @@
 .select2-results{
   width: 100%;
 }
+.ar{
+  mat-header-cell{
+    
+      padding-left: unset;
+      padding-right: 24px;
+  }
+  mat-row{
+    padding-right: 24px;
+  }
+}
+
+
+.mat-paginator-range-actions{
+  direction: ltr;
+}

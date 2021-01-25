@@ -46,7 +46,7 @@ export class SampleComponent implements OnInit
      * @param {OfferService} _OfferService
      */ 
     dataSource: FilesDataSource | null;
-    displayedColumns = ['id', "UserName",'Amount','currency','Type','Country','city','center','Request'];
+    displayedColumns = [ "UserName",'Amount','currency','Type','Country','city','center','Request'];
     @ViewChild(MatPaginator, {static: true})
     paginator: MatPaginator;
   
@@ -67,7 +67,7 @@ export class SampleComponent implements OnInit
 
     Allcurrencies:currency[];
 
-
+     lang:any;
   constructor(
       private _fuseTranslationLoaderService: FuseTranslationLoaderService,
       private _formBuilder: FormBuilder,
@@ -83,6 +83,7 @@ export class SampleComponent implements OnInit
   )
   {     
 
+    this.lang=localStorage.getItem("lang")
     this.UserDetails=authsL.userDetails();
     this.countires=_OfferService.Countries;
     this.centers=_OfferService.centers;

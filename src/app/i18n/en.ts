@@ -1,6 +1,12 @@
 export const locale = {
     lang: 'en',
     data: { 
+        'toolbar':{
+            'Notifications':'Notifications',
+            'myprofile':'my profile',
+            'inbox':'inbox ',
+            'Logout':'Logout'
+         },
         'NAV': {
             'APPLICATIONS': 'Applications',
             'Home': {

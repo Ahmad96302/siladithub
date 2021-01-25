@@ -1,6 +1,12 @@
 export const locale = {
     lang: 'ar',
     data: { 
+        'toolbar':{
+           'Notifications':'الإشعارات',
+           'myprofile':'حسابي الشخصي',
+           'inbox':'صندوق الوارد',
+           'Logout':'تسجيل الخروج'
+        },
         'NAV': {
             'APPLICATIONS': 'Applications',
             'Home': {

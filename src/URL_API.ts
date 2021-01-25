@@ -58,8 +58,7 @@ export const citycentersApi = Api+'api/Centers/city/';
 //////////////////////////////////////////////
 export const getCounts = Api+'api/Offers/offersCounts'; 
 export const myOfferAccepted = Api+'api/Offers/myOfferAccepted'; 
-export const myOfferAccepahmad = Api+'api/Offers/myOfferAccepted'; 
-export const myOfferAcceosama = Api+'api/Offers/myOfferAccepted'; 
+
 
 export const hubconnection= new HubConnectionBuilder()
 .withUrl(SignalRApi)
